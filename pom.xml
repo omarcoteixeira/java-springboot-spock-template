@@ -12,7 +12,6 @@
     <encoding>UTF-8</encoding>
     <java.version>17</java.version>
     <main.class>br.com.omarcoteixeira.ApplicationStarter</main.class>
-    <version.number>${git.commit.time}-${git.commit.id.abbrev}</version.number>
 
     <!-- Frameworks -->
     <spring.boot.version>3.0.1</spring.boot.version>
