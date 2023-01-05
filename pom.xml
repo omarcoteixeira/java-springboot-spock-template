@@ -12,6 +12,7 @@
     <encoding>UTF-8</encoding>
     <java.version>17</java.version>
     <main.class>br.com.omarcoteixeira.ApplicationStarter</main.class>
+    <version.number>${git.commit.time}-${git.commit.id.abbrev}</version.number>
 
     <!-- Frameworks -->
     <spring.boot.version>3.0.1</spring.boot.version>
@@ -228,6 +229,33 @@
               </includes>
             </testSource>
           </testSources>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>pl.project13.maven</groupId>
+        <artifactId>git-commit-id-plugin</artifactId>
+        <version>4.0.0</version>
+        <executions>
+          <execution>
+            <phase>validate</phase>
+            <goals>
+              <goal>revision</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <dateFormat>yyyyMMdd-HHmmss</dateFormat>
+          <generateGitPropertiesFile>false</generateGitPropertiesFile>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.google.cloud.tools</groupId>
+        <artifactId>jib-maven-plugin</artifactId>
+        <version>3.3.1</version>
+        <configuration>
+          <to>
+            <image>${project.name}-${git.total.commit.count}-${git.commit.id.abbrev}</image>
+          </to>
         </configuration>
       </plugin>
     </plugins>
