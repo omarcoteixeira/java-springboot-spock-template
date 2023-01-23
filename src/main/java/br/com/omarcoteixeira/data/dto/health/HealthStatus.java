@@ -1,4 +1,4 @@
-package br.com.omarcoteixeira.data.model.health;
+package br.com.omarcoteixeira.data.dto.health;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 import lombok.RequiredArgsConstructor;

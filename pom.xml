@@ -30,6 +30,7 @@
     <groovy.version>4.0.7</groovy.version>
     <spock.framework.version>2.4-M1-groovy-4.0</spock.framework.version>
     <spock.subjects.extension.version>2.0.0</spock.subjects.extension.version>
+    <archunit.version>1.0.1</archunit.version>
     <!-- Code quality tools -->
     <coveo.version>2.19</coveo.version>
   </properties>
@@ -109,6 +110,12 @@
       <groupId>com.blogspot.toomuchcoding</groupId>
       <artifactId>spock-subjects-collaborators-extension</artifactId>
       <version>${spock.subjects.extension.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.tngtech.archunit</groupId>
+      <artifactId>archunit</artifactId>
+      <version>${archunit.version}</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 

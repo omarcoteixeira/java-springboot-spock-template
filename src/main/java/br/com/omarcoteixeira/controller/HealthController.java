@@ -1,6 +1,6 @@
 package br.com.omarcoteixeira.controller;
 
-import br.com.omarcoteixeira.data.model.health.HealthStatus;
+import br.com.omarcoteixeira.data.dto.health.HealthStatus;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
