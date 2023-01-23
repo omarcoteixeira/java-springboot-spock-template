@@ -30,16 +30,4 @@ class UserControllerTest extends SpringSpecification {
             it == expectedUser
         }
     }
-
-    def "should return return a user by specified i2d"() {
-        when:
-        def result = mockMvc.perform(get("/user/" + expectedUser.id))
-        def response = result.andReturn().response
-
-        then:
-        1 * getUserByIdUseCase.execute(expectedUser.id) >> expectedUser
-        with(objectMapper.readValue(response.contentAsString, User)) {
-            it == expectedUser
-        }
-    }
 }

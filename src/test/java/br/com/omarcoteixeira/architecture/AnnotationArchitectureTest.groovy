@@ -50,7 +50,9 @@ class AnnotationArchitectureTest extends Specification {
             PACKAGE             || SUFFIX           || CLASS
             "..config.."        || 'Configuration'  || Configuration.class
             "..repository.."    || 'Impl'           || Repository.class
+            "..repository.."    || 'Repository'     || FunctionalInterface.class
             "..usecase.."       || 'Impl'           || Service.class
+            "..usecase.."       || 'UseCase'        || FunctionalInterface.class
             "..controller.."    || 'Controller'     || RestController.class
     }
 
