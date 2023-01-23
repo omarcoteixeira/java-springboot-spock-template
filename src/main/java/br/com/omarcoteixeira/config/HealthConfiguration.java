@@ -1,6 +1,6 @@
 package br.com.omarcoteixeira.config;
 
-import br.com.omarcoteixeira.data.model.health.HealthStatus;
+import br.com.omarcoteixeira.data.dto.health.HealthStatus;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
