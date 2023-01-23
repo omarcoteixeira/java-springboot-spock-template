@@ -1,6 +1,6 @@
 package br.com.omarcoteixeira.config;
 
-import br.com.omarcoteixeira.data.dto.health.HealthStatus;
+import br.com.omarcoteixeira.data.dto.health.HealthStatusDto;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class HealthConfiguration {
 
   @Bean
-  HealthStatus healthStatus(AtomicBoolean isHealthy, AtomicBoolean httpHealthy) {
-    return new HealthStatus(isHealthy, httpHealthy);
+  HealthStatusDto healthStatus(AtomicBoolean isHealthy, AtomicBoolean httpHealthy) {
+    return new HealthStatusDto(isHealthy, httpHealthy);
   }
 }

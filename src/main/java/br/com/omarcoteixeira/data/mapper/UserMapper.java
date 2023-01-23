@@ -13,8 +13,6 @@ import org.mapstruct.factory.Mappers;
     uses = {BaseMapper.class})
 public interface UserMapper {
 
-  BaseMapper baseMapper = Mappers.getMapper(BaseMapper.class);
-
   @Mapping(source = "name", target = "name")
   User toModel(UserCreateDto userCreateDto);
 

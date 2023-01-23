@@ -1,13 +1,16 @@
 package br.com.omarcoteixeira.data.dto.health;
 
 import java.util.concurrent.atomic.AtomicBoolean;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 
 @RequiredArgsConstructor
-public class HealthStatus {
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+public class HealthStatusDto {
 
-  private final AtomicBoolean isHealthy;
-  private final AtomicBoolean httpHealthy;
+  AtomicBoolean isHealthy;
+  AtomicBoolean httpHealthy;
 
   public boolean isHealthy() {
     isHealthy.set(httpHealthy.get());
