@@ -12,5 +12,4 @@ public enum ArchitecturePackagesEnum {
   BASE_PACKAGE("br.com.omarcoteixeira");
 
   String value;
-
 }
