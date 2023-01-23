@@ -5,6 +5,7 @@ import com.tngtech.archunit.core.importer.ImportOption
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition
 import org.springframework.context.annotation.Configuration
 import org.springframework.stereotype.Repository
+import org.springframework.stereotype.Service
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -49,6 +50,17 @@ class LayerArchitectureTest extends Specification {
                 .and()
                 .haveSimpleNameEndingWith("Configuration")
                 .should().beAnnotatedWith(Configuration.class)
+        expect:
+        rule.check(allClasses)
+    }
+
+    Should "use case classes have @Service annotation"() {
+        given:
+        def rule = ArchRuleDefinition.classes().that()
+                .resideInAnyPackage("..usecase..")
+                .and()
+                .haveSimpleNameEndingWith("Impl")
+                .should().beAnnotatedWith(Service.class)
         expect:
         rule.check(allClasses)
     }
