@@ -4,6 +4,7 @@ import com.tngtech.archunit.core.importer.ClassFileImporter
 import com.tngtech.archunit.core.importer.ImportOption
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition
 import org.springframework.context.annotation.Configuration
+import org.springframework.stereotype.Repository
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -41,11 +42,35 @@ class LayerArchitectureTest extends Specification {
         rule.check(allClasses)
     }
 
-    Should "configuration class have @Configuration annotation"() {
+    Should "configuration classes have @Configuration annotation"() {
         given:
         def rule = ArchRuleDefinition.classes().that()
+                .resideInAnyPackage("..config..")
+                .and()
                 .haveSimpleNameEndingWith("Configuration")
                 .should().beAnnotatedWith(Configuration.class)
+        expect:
+        rule.check(allClasses)
+    }
+
+    Should "repository classes have @Repository annotation"() {
+        given:
+        def rule = ArchRuleDefinition.classes().that()
+                .resideInAnyPackage("..repository..")
+                .and()
+                .haveSimpleNameEndingWith("Impl")
+                .should().beAnnotatedWith(Repository.class)
+        expect:
+        rule.check(allClasses)
+    }
+
+    Should "all interfaces (except mapper) have @FunctionalInterface annotation"() {
+        given:
+        def rule = ArchRuleDefinition.classes().that()
+                .areInterfaces()
+                .and()
+                .haveSimpleNameNotEndingWith("Mapper")
+                .should().beAnnotatedWith(FunctionalInterface.class)
         expect:
         rule.check(allClasses)
     }
