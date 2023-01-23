@@ -5,15 +5,12 @@ import br.com.omarcoteixeira.data.model.user.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
-import org.mapstruct.factory.Mappers;
 
 @Mapper(
     componentModel = "spring",
     unmappedTargetPolicy = ReportingPolicy.IGNORE,
     uses = {BaseMapper.class})
 public interface UserMapper {
-
-  BaseMapper baseMapper = Mappers.getMapper(BaseMapper.class);
 
   @Mapping(source = "name", target = "name")
   User toModel(UserCreateDto userCreateDto);

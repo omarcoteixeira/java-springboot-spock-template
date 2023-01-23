@@ -1,6 +1,6 @@
 package br.com.omarcoteixeira.controller;
 
-import br.com.omarcoteixeira.data.dto.health.HealthStatus;
+import br.com.omarcoteixeira.data.dto.health.HealthStatusDto;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class HealthController {
 
-  HealthStatus healthStatus;
+  HealthStatusDto healthStatusDto;
 
   @GetMapping("/ping")
   Boolean ping() {
-    return healthStatus.isHealthy();
+    return healthStatusDto.isHealthy();
   }
 }

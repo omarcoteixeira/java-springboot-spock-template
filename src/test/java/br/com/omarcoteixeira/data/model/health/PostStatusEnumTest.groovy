@@ -3,16 +3,18 @@ package br.com.omarcoteixeira.data.model.health
 import br.com.omarcoteixeira.data.model.post.PostStatusEnum
 import spock.lang.Specification
 
+import java.lang.Void as Should
+
 class PostStatusEnumTest extends Specification {
 
-    def "PostEnum Should have all values"() {
+    Should "PostEnum have #MEMBER"() {
         expect:
-            Objects.equals(enumMember.getCode(), statusValue) == expectedResult
+            Objects.equals(MEMBER.getCode(), VALUE) == EXPECTED
         where:
-            enumMember              | statusValue   | expectedResult
-            PostStatusEnum.DRAFT     | 0 | true
-            PostStatusEnum.PUBLISHED | 1 | true
-            PostStatusEnum.ARCHIVED  | 2 | true
+            MEMBER                   | VALUE            | EXPECTED
+            PostStatusEnum.DRAFT     | 0                | true
+            PostStatusEnum.PUBLISHED | 1                | true
+            PostStatusEnum.ARCHIVED  | 2                | true
     }
 
 }

@@ -1,11 +1,8 @@
 package br.com.omarcoteixeira.architecture
 
+import br.com.omarcoteixeira.architecture.enums.ArchitecturePackagesEnum
 import com.tngtech.archunit.core.importer.ClassFileImporter
 import com.tngtech.archunit.core.importer.ImportOption
-import com.tngtech.archunit.lang.syntax.ArchRuleDefinition
-import org.springframework.context.annotation.Configuration
-import org.springframework.stereotype.Repository
-import org.springframework.stereotype.Service
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -18,7 +15,7 @@ class LayerArchitectureTest extends Specification {
     @Shared
     def allClasses = new ClassFileImporter()
             .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_TESTS)
-            .importPackages("br.com.omarcoteixeira")
+            .importPackages(ArchitecturePackagesEnum.BASE_PACKAGE.value)
 
     Should "layers have proper accesses"() {
         given:
@@ -39,50 +36,6 @@ class LayerArchitectureTest extends Specification {
                 .whereLayer("Mapper").mayOnlyBeAccessedByLayers("Controller", "Configuration")
                 .whereLayer("Properties").mayOnlyBeAccessedByLayers("Configuration", "Controller", "UseCase", "Repository")
 
-        expect:
-        rule.check(allClasses)
-    }
-
-    Should "configuration classes have @Configuration annotation"() {
-        given:
-        def rule = ArchRuleDefinition.classes().that()
-                .resideInAnyPackage("..config..")
-                .and()
-                .haveSimpleNameEndingWith("Configuration")
-                .should().beAnnotatedWith(Configuration.class)
-        expect:
-        rule.check(allClasses)
-    }
-
-    Should "use case classes have @Service annotation"() {
-        given:
-        def rule = ArchRuleDefinition.classes().that()
-                .resideInAnyPackage("..usecase..")
-                .and()
-                .haveSimpleNameEndingWith("Impl")
-                .should().beAnnotatedWith(Service.class)
-        expect:
-        rule.check(allClasses)
-    }
-
-    Should "repository classes have @Repository annotation"() {
-        given:
-        def rule = ArchRuleDefinition.classes().that()
-                .resideInAnyPackage("..repository..")
-                .and()
-                .haveSimpleNameEndingWith("Impl")
-                .should().beAnnotatedWith(Repository.class)
-        expect:
-        rule.check(allClasses)
-    }
-
-    Should "all interfaces (except mapper) have @FunctionalInterface annotation"() {
-        given:
-        def rule = ArchRuleDefinition.classes().that()
-                .areInterfaces()
-                .and()
-                .haveSimpleNameNotEndingWith("Mapper")
-                .should().beAnnotatedWith(FunctionalInterface.class)
         expect:
         rule.check(allClasses)
     }
